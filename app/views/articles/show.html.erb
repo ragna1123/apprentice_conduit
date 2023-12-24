@@ -1,0 +1,76 @@
+<div class="article-page">
+  <div class="banner">
+    <div class="container">
+      <h1><%= @article.title %></h1>
+      <div class="article-meta">
+        <a href="/profile/#"><img src="/Users/hagahiroki/Desktop/apprentice/rails/counduit/app/assets/images/IMG_6350.jpeg" /></a>
+        <div class="info">
+          <a href="/profile/#" class="author"><%= @user.username%></a>
+          <span class="date"><%= @article.updated_at.strftime("%c")%></span>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary">
+          <i class="ion-plus-round"></i>
+          &nbsp; Follow <%= @user.username%> <span class="counter">(10)</span>
+        </button>
+        &nbsp;&nbsp;
+        <button class="btn btn-sm btn-outline-primary">
+          <i class="ion-heart"></i>
+          &nbsp; Favorite Post <span class="counter">(29)</span>
+        </button>
+        <%= link_to 'Edit Article', edit_article_path(@article), class: 'btn btn-sm btn-outline-secondary' %>
+        <%= button_to 'Delete Article', article_path(@article), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+  <div class="container page">
+    <div class="row article-content">
+      <div class="col-md-12">
+        <h2 id="introducing-ionic"><%= @article.about%></h2>
+        <p><%= @article.body %></p>
+        <ul class="tag-list">
+          <li class="tag-default tag-pill tag-outline">realworld</li>
+          <li class="tag-default tag-pill tag-outline">implementations</li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-md-8 offset-md-2">
+        <%= form_with(model: @comments, url: article_comments_path(@article), local: true, class: "card comment-form", method: "post") do |form| %>
+          <div class="card-block">
+            <%= form.text_area :comment, class: "form-control", placeholder: "Write a comment...", rows: 3 %>
+          </div>
+          <div class="card-footer">
+            <%= form.submit "Post Comment", class: "btn btn-sm btn-primary" %>
+          </div>
+        <% end %>
+        <%# --- comment area --- %>
+        <% if @comments.present? %>
+          <% @comments.each do |comment| %>
+            <div class="card">
+              <div class="card-block">
+                <p class="card-text">
+                  <%= comment.comment %>
+                </p>
+              </div>
+              <div class="card-footer">
+                <a href="/profile/author/" class="comment-author">
+                  <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+                </a>
+                &nbsp;
+                <a href="/profile/jacob-schmidt/" class="comment-author"><%= comment.username %></a>
+                <span class="date-posted"><%= comment.created_at %></span>
+                <span class="mod-options">
+                  <%= button_to article_comment_path(@article, comment), method: :delete do %>
+                    <i class="ion-trash-a"></i>
+                  <% end %>
+                </span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <%# --- comment area end --- %>
+      </div>
+    </div>
+  </div>
+</div>

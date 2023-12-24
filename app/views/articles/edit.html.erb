@@ -1,0 +1,31 @@
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <ul class="error-messages">
+          <li>That title is required</li>
+        </ul>
+        <%= form_with(model: @article) do |form| %>
+          <fieldset>
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control form-control-lg", placeholder: @article.title %>
+
+            <%= form.label :about %>
+            <%= form.text_field :about, class: "form-control", placeholder: @article.about %>
+
+            <%= form.label :body %>
+            <%= form.text_area :body, class: "form-control", rows: 8, placeholder: @article.body %>
+
+            <%# form.label :tag_list %>
+            <%# form.text_field :tag_list, class: "form-control", placeholder: "Enter tags" %>
+
+            <div class="tag-list">
+              <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
+            </div>
+            <%= form.submit "Publish Article", class: "btn btn-lg pull-xs-right btn-primary" %>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
