@@ -1,25 +1,18 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # apprentice_conduit
+
+## 機能一覧
+### ホーム
+- 投稿記事の一覧表示
+- 自身の投稿した記事の一覧表示
+  
+### 記事投稿ページ
+- 記事の投稿
+
+### 記事の編集ページ
+- 記事の編集
+
+### 記事の詳細ページ
+- 記事の削除
+- コメントの投稿と削除
+
+※なおユーザー登録機能は未実装のため、現段階では投稿者は固定されております。
